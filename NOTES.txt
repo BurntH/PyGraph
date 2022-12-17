@@ -1,0 +1,14 @@
+2022.12.17 
+    progress
+        - add edges
+            - edges should appear below the nodes, to be fixed
+        - add color property to nodes & edges
+            - key of edge_dict is a frozenset (unordered & hashable)
+        - algorithms.py
+            - ed for editor, in place of nx.graph
+            - returns math.inf (instead of error) when the graph is not connected
+
+    ideas(?)
+        - show labels
+        - write a piece of code that generates colors
+        

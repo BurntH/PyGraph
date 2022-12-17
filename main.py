@@ -1,6 +1,7 @@
 import dearpygui.dearpygui as dpg
 import networkx as nx
 import Editor.Editor as Editor
+import algorithms as alg
 dpg.create_context()
 dpg.create_viewport()
 dpg.setup_dearpygui()
@@ -54,20 +55,36 @@ editor_registor = []
 # G.add_edge(1, 2) # default edge data=1
 # G.add_edge(2, 3, weight=0.9) # specify edge data
 
+
 main_ed = Editor.Editor(window = "main")
 # main_ed.graph.add_node(1)
 # main_ed.graph.add_node(2)
 # main_ed.graph.add_node(3)
-main_ed.add_node(1, pos=[0, 0])
-main_ed.add_node(2, pos=[700, 400])
-main_ed.add_node(3, pos=[300, 500])
-main_ed.add_node(4, pos=[30, 500])
-main_ed.add_node(5, pos=[300, 50])
+main_ed.add_node(1, pos=[0, 0], color = (0,0,255,255))
+main_ed.add_node(2, pos=[700, 400], color = (0,255,255,255))
+main_ed.add_node(3, pos=[300, 500], color = (0,255,0,255))
+main_ed.add_node(4, pos=[30, 500], color = (255,255,0,255))
+main_ed.add_node(5, pos=[300, 50], color = (255,0,0,255))
+# write a piece of code that generates colors?
+
+main_ed.add_edge(3,5)
+main_ed.add_edge(2,5)
+main_ed.add_edge(4,5)
+main_ed.add_edge(3,2) 
+main_ed.add_edge(1,4)
 
 main_ed.set_camera(0.5, [-100, -100])
 
 
+### test algoritms ###
+
+#alg.hl_shortest_path(main_ed,3,4)
+print(alg.eccentricity(main_ed, 2))
+#alg.hl_eccentricity(main_ed, 2)
+alg.hl_periphery(main_ed)
 editor_registor.append(main_ed)
+
+
 
 
 ################# Main Loop #################
@@ -78,6 +95,7 @@ mode = None
 while dpg.is_dearpygui_running():
     for ed in editor_registor:
         ed.update_window()
+        
     
     if mode == "pan":
         pass 
@@ -87,7 +105,7 @@ while dpg.is_dearpygui_running():
 dpg.destroy_context()
 
 
-
+#################
 
 
 
